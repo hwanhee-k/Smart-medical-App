@@ -1,18 +1,11 @@
-import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import * as React from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import styled from "styled-components";
 
-export function Test(){
-    return <div>test</div>
-  }
-
-
-
-export default function Toggle({name,content,id,children}) {
-    console.log(name,content,id);
+export default function Toggle({ name, content, id, children }) {
   return (
     <div>
       <Accordion>
@@ -20,23 +13,19 @@ export default function Toggle({name,content,id,children}) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
-    >
-          <Typography >{name}</Typography>
+        >
+          <div>{name}</div>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography name={name} content={content} id={id}>
-            {children}
-          </Typography>
-        </AccordionDetails>
+        <AccordionDetailsDiv name={name} content={content} id={id}>
+          {children}
+        </AccordionDetailsDiv>
       </Accordion>
     </div>
   );
 }
 
-
-export const OrderList = () => {
-
-    return(
-        <div></div>
-    );
-}
+const AccordionDetailsDiv = styled(AccordionDetails)`
+  display: flex;
+  text-align: left;
+  background-color: #eee;
+`;

@@ -1,4 +1,6 @@
 import * as React from "react";
+import DraggableList from "./DraggableList";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 
@@ -10,7 +12,6 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { mainListItems } from "./listItems";
@@ -68,6 +69,14 @@ function Dashboard() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  const RECEPTION_ORDER_LIST = ["접수대", "진료실", "진료실 앞 안내", "수납"];
+  const items = [
+    { id: "1", name: "박세창", content: RECEPTION_ORDER_LIST },
+    { id: "2", name: "신어진", content: RECEPTION_ORDER_LIST },
+    { id: "3", name: "홍대기", content: RECEPTION_ORDER_LIST },
+    { id: "4", name: "강성율", content: RECEPTION_ORDER_LIST },
+  ];
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -130,14 +139,9 @@ function Dashboard() {
           }}
         >
           <Toolbar />
-          <Test1>
-            <div>
-              박대기
-              <div>진료순서1</div>
-              <div>진료순서2</div>
-              <div>진료순서3</div>
-            </div>
-          </Test1>
+          <DraggableListContainer>
+            <DraggableList items={items}/>
+          </DraggableListContainer>
         </Box>
       </Box>
     </ThemeProvider>
@@ -146,6 +150,6 @@ function Dashboard() {
 
 export default Dashboard;
 
-const Test1 = styled.div`
-  background-color: aqua;
+const DraggableListContainer = styled.div`
+  background-color: white;
 `;

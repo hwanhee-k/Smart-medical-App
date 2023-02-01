@@ -17,31 +17,31 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="List1" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
-      <ListItemText primary="Orders" />
+      <ListItemText primary="List2" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Customers" />
+      <ListItemText primary="List3" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Reports" />
+      <ListItemText primary="List4" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="List5" />
     </ListItemButton>
   </React.Fragment>
 );
