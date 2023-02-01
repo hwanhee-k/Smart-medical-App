@@ -130,14 +130,14 @@ function Dashboard() {
           }}
         >
           <Toolbar />
-          <div>
-            <Test1>박대기</Test1>
-            <div className="order">
+          <Test1>
+            <div>
+              박대기
               <div>진료순서1</div>
               <div>진료순서2</div>
               <div>진료순서3</div>
             </div>
-          </div>
+          </Test1>
         </Box>
       </Box>
     </ThemeProvider>
