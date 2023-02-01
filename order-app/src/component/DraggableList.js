@@ -47,6 +47,7 @@ const DraggableList = () => {
                       className="name"
                     >
                       {name}
+                      <div>{content}</div>
                     </div>
                   )}
                 </Draggable>
