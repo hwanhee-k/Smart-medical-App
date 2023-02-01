@@ -5,9 +5,13 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+export function Test(){
+    return <div>test</div>
+  }
 
 
-export default function Toggle({name,content,id}) {
+
+export default function Toggle({name,content,id,children}) {
     console.log(name,content,id);
   return (
     <div>
@@ -16,15 +20,12 @@ export default function Toggle({name,content,id}) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
-        >
+    >
           <Typography >{name}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography name={name} content={content} id={id}>
-            <div>1</div>
-            <div>1</div>
-            <div>1</div>
-            <div>1</div>
+            {children}
           </Typography>
         </AccordionDetails>
       </Accordion>

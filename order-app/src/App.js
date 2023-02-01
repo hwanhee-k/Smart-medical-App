@@ -4,6 +4,8 @@ import Dashboard from "./component/Dashborad";
 import Test from "./component/Test";
 import DraggableList from "./component/DraggableList";
 
+
+
 function App() {
   const RECEPTION_ORDER_LIST = ["접수대", "진료실", "진료실 앞 안내", "수납"];
   const items = [
@@ -16,7 +18,6 @@ function App() {
     <div className="App">
       {/* <Test /> */}
       {/* <Dashboard /> */}
-      <DraggableList items={items}/>
       <DraggableList items={items}/>
     </div>
   );
