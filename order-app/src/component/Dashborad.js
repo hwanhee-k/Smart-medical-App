@@ -1,6 +1,6 @@
 import * as React from "react";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import { StyledEngineProvider } from "@mui/styled-engine";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import styled from "styled-components";
 
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -14,9 +14,6 @@ import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { mainListItems } from "./listItems";
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
 
 const drawerWidth = 240;
 
@@ -73,79 +70,82 @@ function Dashboard() {
   };
 
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={mdTheme}>
-        <Box sx={{ display: "flex" }}>
-          <AppBar position="absolute" open={open}>
-            <Toolbar
-              sx={{
-                pr: "24px", // keep right padding when drawer closed
-              }}
-            >
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                onClick={toggleDrawer}
-                sx={{
-                  marginRight: "36px",
-                  ...(open && { display: "none" }),
-                }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography
-                component="h1"
-                variant="h6"
-                color="inherit"
-                noWrap
-                sx={{ flexGrow: 1 }}
-              >
-                Dashboard
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <Drawer variant="permanent" open={open}>
-            <Toolbar
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                px: [1],
-              }}
-            >
-              <IconButton onClick={toggleDrawer}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </Toolbar>
-            <Divider />
-            <List component="nav">{mainListItems}</List>
-          </Drawer>
-          <Box
-            component="main"
+    <ThemeProvider theme={mdTheme}>
+      <Box sx={{ display: "flex" }}>
+        <AppBar position="absolute" open={open}>
+          <Toolbar
             sx={{
-              backgroundColor: (theme) =>
-                theme.palette.mode === "light"
-                  ? theme.palette.grey[100]
-                  : theme.palette.grey[900],
-              flexGrow: 1,
-              height: "100vh",
-              overflow: "auto",
+              pr: "24px", // keep right padding when drawer closed
             }}
           >
-            <Toolbar />
-
-            <p>박대기</p>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              sx={{
+                marginRight: "36px",
+                ...(open && { display: "none" }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{ flexGrow: 1 }}
+            >
+              Dashboard
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <Toolbar
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              px: [1],
+            }}
+          >
+            <IconButton onClick={toggleDrawer}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </Toolbar>
+          <Divider />
+          <List component="nav">{mainListItems}</List>
+        </Drawer>
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: "100vh",
+            overflow: "auto",
+          }}
+        >
+          <Toolbar />
+          <div>
+            <Test1>박대기</Test1>
             <div className="order">
               <div>진료순서1</div>
               <div>진료순서2</div>
               <div>진료순서3</div>
             </div>
-          </Box>
+          </div>
         </Box>
-      </ThemeProvider>
-    </StyledEngineProvider>
+      </Box>
+    </ThemeProvider>
   );
 }
 
 export default Dashboard;
+
+const Test1 = styled.div`
+  background-color: aqua;
+`;
