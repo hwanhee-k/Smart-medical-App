@@ -71,7 +71,6 @@ function MainPage() {
   };
 
   const RECEPTION_ORDER_LIST = ["접수대", "진료실", "진료실 앞 안내", "수납"];
-
   const items = [
     { id: "1", name: "박세창", content: RECEPTION_ORDER_LIST },
     { id: "2", name: "신어진", content: RECEPTION_ORDER_LIST },
@@ -144,9 +143,7 @@ function MainPage() {
           }}
         >
           <Toolbar />
-          <>
-            <DraggableList items={items} />
-          </>
+          <DraggableList items={items} />
         </Box>
       </Box>
     </ThemeProvider>
@@ -154,7 +151,3 @@ function MainPage() {
 }
 
 export default MainPage;
-
-const DraggableListContainer = styled.div`
-  background-color: white;
-`;

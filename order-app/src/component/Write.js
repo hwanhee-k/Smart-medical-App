@@ -3,24 +3,39 @@ import styled from "styled-components";
 
 const Write = () => {
   const [textState, setTextState] = useState("");
+  const [writeState, setWriteState] = useState("");
 
   const handleSubmit = (e) => {
     alert(`${textState} 작성완료!`);
+    e.preventDefault();
+    setWriteState(textState);
+    setTextState("");
   };
   const handleChange = (e) => {
     setTextState(e.target.value);
-    e.preventDefault();
   };
 
   return (
-    <ContainerForm onSubmit={handleSubmit}>
-      <TextInput
-        type="text"
-        value={textState}
-        onChange={handleChange}
-      ></TextInput>
-      <BtnInput type="submit" value="작성"></BtnInput>
-    </ContainerForm>
+    <>
+      <ContainerForm onSubmit={handleSubmit}>
+        <TextInput
+          type="text"
+          value={textState}
+          onChange={handleChange}
+          placeholder="메모를 작성해주세요"
+        ></TextInput>
+        <BtnInput type="submit" value="작성"></BtnInput>
+        <div>메모사항</div>
+        <TextDiv>{writeState}</TextDiv>
+        <BtnInput
+          onClick={() => {
+            setWriteState("");
+          }}
+          type="button"
+          value="삭제"
+        ></BtnInput>
+      </ContainerForm>
+    </>
   );
 };
 
@@ -37,10 +52,17 @@ const ContainerForm = styled.form`
 
 const TextInput = styled.input`
   width: 80%;
-  height: 50%;
-  font-size: x-large;
+  height: 20%;
+  font-size: large;
 `;
 
 const BtnInput = styled.input`
   margin: 2%;
+`;
+
+const TextDiv = styled.div`
+  width: 80%;
+  height: 10%;
+  background-color: white;
+  border: 1px solid gray;
 `;

@@ -54,11 +54,7 @@ const DraggableList = ({ items }) => {
   };
 
   //환자이름, 콘텐츠에 따라 라우팅관리하는 함수
-  const handleDetailContentClick = (content) => {
-    console.log(content);
-    //content따라서 다른페이지로 navigate
-    navigate(`/reception/${content}`);
-  };
+  const handleDetailContentClick = () => {};
 
   useEffect(() => {
     setState(items);
