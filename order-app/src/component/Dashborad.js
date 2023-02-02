@@ -14,7 +14,7 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { mainListItems } from "./listItems";
+import { MainListItems } from "./MainListItems";
 
 const drawerWidth = 240;
 
@@ -75,8 +75,12 @@ function Dashboard() {
   const items = [
     { id: "1", name: "박세창", content: RECEPTION_ORDER_LIST },
     { id: "2", name: "신어진", content: RECEPTION_ORDER_LIST },
-    { id: "3", name: "홍대기", content:  RECEPTION_ORDER_LIST},
-    { id: "4", name: "강성율", content:  RECEPTION_ORDER_LIST},
+    { id: "3", name: "홍대기", content: RECEPTION_ORDER_LIST },
+    { id: "4", name: "강성율", content: RECEPTION_ORDER_LIST },
+    { id: "5", name: "박세훈", content: RECEPTION_ORDER_LIST },
+    { id: "6", name: "김정수", content: RECEPTION_ORDER_LIST },
+    { id: "7", name: "이주원", content: RECEPTION_ORDER_LIST },
+    { id: "8", name: "조한일", content: RECEPTION_ORDER_LIST },
   ];
 
   return (
@@ -125,7 +129,7 @@ function Dashboard() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">{mainListItems}</List>
+          <List component="nav">{MainListItems}</List>
         </Drawer>
         <Box
           component="main"
@@ -141,7 +145,7 @@ function Dashboard() {
         >
           <Toolbar />
           <>
-            <DraggableList items={items}/>
+            <DraggableList items={items} />
           </>
         </Box>
       </Box>

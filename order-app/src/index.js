@@ -4,13 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import CssBaseline from "@mui/material/CssBaseline";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.Fragment>
+  <BrowserRouter>
     <CssBaseline />
     <App />
-  </React.Fragment>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
