@@ -98,7 +98,7 @@ const ReceptionPage = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
+            <HomeButton
               component="h1"
               variant="h6"
               color="inherit"
@@ -107,7 +107,7 @@ const ReceptionPage = () => {
               onClick={() => navigate("/")}
             >
               Dashboard
-            </Typography>
+            </HomeButton>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -158,4 +158,8 @@ const Container = styled.div`
   align-content: center;
   flex-wrap: wrap;
   height: 10%;
+`;
+
+const HomeButton = styled(Typography)`
+  cursor: pointer;
 `;

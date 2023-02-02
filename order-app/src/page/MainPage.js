@@ -64,23 +64,28 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 
+export const RECEPTION_ORDER_LIST = [
+  "접수대",
+  "진료실",
+  "진료실 앞 안내",
+  "수납",
+];
+export const items = [
+  { id: "1", name: "박세창", content: RECEPTION_ORDER_LIST },
+  { id: "2", name: "신어진", content: RECEPTION_ORDER_LIST },
+  { id: "3", name: "홍대기", content: RECEPTION_ORDER_LIST },
+  { id: "4", name: "강성율", content: RECEPTION_ORDER_LIST },
+  { id: "5", name: "박세훈", content: RECEPTION_ORDER_LIST },
+  { id: "6", name: "김정수", content: RECEPTION_ORDER_LIST },
+  { id: "7", name: "이주원", content: RECEPTION_ORDER_LIST },
+  { id: "8", name: "조한일", content: RECEPTION_ORDER_LIST },
+];
+
 function MainPage() {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
-  const RECEPTION_ORDER_LIST = ["접수대", "진료실", "진료실 앞 안내", "수납"];
-  const items = [
-    { id: "1", name: "박세창", content: RECEPTION_ORDER_LIST },
-    { id: "2", name: "신어진", content: RECEPTION_ORDER_LIST },
-    { id: "3", name: "홍대기", content: RECEPTION_ORDER_LIST },
-    { id: "4", name: "강성율", content: RECEPTION_ORDER_LIST },
-    { id: "5", name: "박세훈", content: RECEPTION_ORDER_LIST },
-    { id: "6", name: "김정수", content: RECEPTION_ORDER_LIST },
-    { id: "7", name: "이주원", content: RECEPTION_ORDER_LIST },
-    { id: "8", name: "조한일", content: RECEPTION_ORDER_LIST },
-  ];
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -103,7 +108,7 @@ function MainPage() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
+            <HomeButton
               component="h1"
               variant="h6"
               color="inherit"
@@ -111,7 +116,7 @@ function MainPage() {
               sx={{ flexGrow: 1 }}
             >
               Dashboard
-            </Typography>
+            </HomeButton>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -151,3 +156,7 @@ function MainPage() {
 }
 
 export default MainPage;
+
+const HomeButton = styled(Typography)`
+  cursor: pointer;
+`;
