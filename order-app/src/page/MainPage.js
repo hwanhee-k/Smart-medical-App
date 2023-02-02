@@ -1,5 +1,5 @@
 import * as React from "react";
-import DraggableList from "./DraggableList";
+import DraggableList from "../component/DraggableList";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
@@ -14,7 +14,7 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { MainListItems } from "./MainListItems";
+import { MainListItems } from "../component/MainListItems";
 
 const drawerWidth = 240;
 
@@ -64,7 +64,7 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 
-function Dashboard() {
+function MainPage() {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -153,7 +153,7 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default MainPage;
 
 const DraggableListContainer = styled.div`
   background-color: white;

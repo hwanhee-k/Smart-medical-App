@@ -12,10 +12,10 @@ const DraggableList = ({ items }) => {
     const originData = [...arr];
     const [reorderedData] = originData.splice(start_idx, 1);
     originData.splice(end_idx, 0, reorderedData);
-    return originData
-    }
+    return originData;
+  };
 
-  // 환자 리스트 드래그 시 
+  // 환자 리스트 드래그 시
   const onDragEndPeople = (result) => {
     if (!result.destination) {
       return;
@@ -24,37 +24,36 @@ const DraggableList = ({ items }) => {
     const originData = createReorderedData(
       state,
       result.source.index,
-      result.destination.index);
+      result.destination.index
+    );
     setState(originData);
-
   };
   // reception order 드래그 시
   const onDragEndReceptionOrder = (result) => {
     if (!result.destination) {
       return;
     }
-    const target_id = result.draggableId.split("_")[0]
+    const target_id = result.draggableId.split("_")[0];
 
-    setState(state.map(item => {
-      if(item.id === target_id){
-        const originData = createReorderedData(
-          item.content,
-          result.source.index,
-          result.destination.index
-        );
-        return {...item, content: [...originData]}
-      } else {
-        return item;
-      }
-    }))
+    setState(
+      state.map((item) => {
+        if (item.id === target_id) {
+          const originData = createReorderedData(
+            item.content,
+            result.source.index,
+            result.destination.index
+          );
+          return { ...item, content: [...originData] };
+        } else {
+          return item;
+        }
+      })
+    );
   };
-
 
   useEffect(() => {
     setState(items);
   }, []);
-
-
 
   return (
     //todo: component 분리하기
@@ -87,30 +86,32 @@ const DraggableList = ({ items }) => {
                                 {...provided.droppableProps}
                               >
                                 <div className="name-container">
-                                  {state.filter(item => item.id === id)[0].content?.map((content_name, idx) => (
-                                    <Draggable
-                                      draggableId={`${id}_${idx}`}
-                                      key={idx}
-                                      index={idx}
-                                    >
-                                      {(provided) => (
-                                        <div
-                                          {...provided.draggableProps}
-                                          {...provided.dragHandleProps}
-                                          ref={provided.innerRef}
-                                          key={idx}
-                                          className="name"
-                                        >
-                                          <DragContentContainer>
-                                            <span>{content[idx]}</span>
-                                            <DragHandleIconSpan>
-                                              <DragHandleIcon />
-                                            </DragHandleIconSpan>
-                                          </DragContentContainer>
-                                        </div>
-                                      )}
-                                    </Draggable>
-                                  ))}
+                                  {state
+                                    .filter((item) => item.id === id)[0]
+                                    .content?.map((content_name, idx) => (
+                                      <Draggable
+                                        draggableId={`${id}_${idx}`}
+                                        key={idx}
+                                        index={idx}
+                                      >
+                                        {(provided) => (
+                                          <div
+                                            {...provided.draggableProps}
+                                            {...provided.dragHandleProps}
+                                            ref={provided.innerRef}
+                                            key={idx}
+                                            className="name"
+                                          >
+                                            <DragContentContainer>
+                                              <span>{content[idx]}</span>
+                                              <DragHandleIconSpan>
+                                                <DragHandleIcon />
+                                              </DragHandleIconSpan>
+                                            </DragContentContainer>
+                                          </div>
+                                        )}
+                                      </Draggable>
+                                    ))}
                                   {provided.placeholder}
                                 </div>
                               </div>

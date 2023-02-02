@@ -1,5 +1,5 @@
 import "./App.css";
-import Dashboard from "./component/Dashborad";
+import MainPage from "./page/MainPage";
 import DraggableList from "./component/DraggableList";
 import { Routes, Route } from "react-router-dom";
 
@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/" element={<Dashboard />} />
+        <Route exact path="/" element={<MainPage />} />
       </Routes>
     </div>
   );
