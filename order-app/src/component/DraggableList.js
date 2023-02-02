@@ -3,9 +3,11 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Toggle from "./toggle";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const DraggableList = ({ items }) => {
   const [state, setState] = useState([]);
+  const navigate = useNavigate();
 
   // Array를 setState 하기 위한 함수
   const createReorderedData = (arr, start_idx, end_idx) => {
@@ -49,6 +51,13 @@ const DraggableList = ({ items }) => {
         }
       })
     );
+  };
+
+  //환자이름, 콘텐츠에 따라 라우팅관리하는 함수
+  const handleDetailContentClick = (content) => {
+    console.log(content);
+    //content따라서 다른페이지로 navigate
+    navigate(`/reception/${content}`);
   };
 
   useEffect(() => {
@@ -103,7 +112,15 @@ const DraggableList = ({ items }) => {
                                             className="name"
                                           >
                                             <DragContentContainer>
-                                              <span>{content[idx]}</span>
+                                              <span
+                                                onClick={() =>
+                                                  navigate(
+                                                    `/reception/${content[idx]}/${name}`
+                                                  )
+                                                }
+                                              >
+                                                {content[idx]}
+                                              </span>
                                               <DragHandleIconSpan>
                                                 <DragHandleIcon />
                                               </DragHandleIconSpan>
