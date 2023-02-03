@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const DraggableList = ({ items }) => {
+  console.log(items);
   const [state, setState] = useState([]);
   const navigate = useNavigate();
 
@@ -32,6 +33,7 @@ const DraggableList = ({ items }) => {
   };
   // reception order 드래그 시
   const onDragEndReceptionOrder = (result) => {
+    console.log(result);
     if (!result.destination) {
       return;
     }
