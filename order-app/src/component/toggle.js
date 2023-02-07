@@ -7,8 +7,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 
-export default function Toggle({name,content,id}) {
-    console.log(name,content,id);
+export default function Toggle({name,content,id,children,c,i}) {
+  console.log(children);
   return (
     <div>
       <Accordion>
@@ -21,10 +21,7 @@ export default function Toggle({name,content,id}) {
         </AccordionSummary>
         <AccordionDetails>
           <Typography name={name} content={content} id={id}>
-            <div>1</div>
-            <div>1</div>
-            <div>1</div>
-            <div>1</div>
+            {children}
           </Typography>
         </AccordionDetails>
       </Accordion>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Toggle from "./toggle";
 
@@ -38,7 +38,7 @@ const DraggableList = ({items}) => {
             {...provided.droppableProps}
           >
             <div className="name-container">
-              {items?.map(({ id, name, content }, index) => (
+              {state?.map(({ id, name, content }, index) => (
                 <Draggable draggableId={id} key={id} index={index}>
                   {(provided) => (
                     <div
@@ -48,7 +48,11 @@ const DraggableList = ({items}) => {
                       key={id}
                       className="name"
                     >
-                      <Toggle name={name} content={content} id={id}/>
+                      <Toggle name={name} content={content} id={id}>
+                        {content.map((con,index)=>(
+                          <div>{con}</div>
+                        ))}
+                      </Toggle>
                     </div>
                   )}
                 </Draggable>
