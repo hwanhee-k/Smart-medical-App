@@ -30,7 +30,7 @@ const DraggableList = ({ items, children, state, setState }) => {
             {...provided.droppableProps}
           >
             <div className="name-container">
-              {state?.map(({ id, name, content }, index) => (
+              {/* {state?.map(({ id, name, content }, index) => (
                 <Draggable draggableId={id} key={id} index={index}>
                   {(provided) => (
                     <div
@@ -44,7 +44,8 @@ const DraggableList = ({ items, children, state, setState }) => {
                     </div>
                   )}
                 </Draggable>
-              ))}
+              ))} */}
+              {children}
               {provided.placeholder}
             </div>
           </div>

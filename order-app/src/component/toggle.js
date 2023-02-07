@@ -11,8 +11,7 @@ export default function Toggle({ items, state, setState }) {
   console.log("state", state);
   return (
     <div>
-      1
-      {/* {state?.map(({ id, name, content }, index) => (
+      {state?.map(({ id, name, content }, index) => (
         <Draggable draggableId={id} key={id} index={index}>
           {(provided) => (
             <div
@@ -28,19 +27,13 @@ export default function Toggle({ items, state, setState }) {
                   aria-controls="panel1a-content1"
                   id="panel1a-header1"
                 >
-                  <Typography>뎁스1</Typography>
+                  <Typography>{name}</Typography>
                 </AccordionSummary>
               </Accordion>
             </div>
           )}
         </Draggable>
-      ))} */}
+      ))}
     </div>
   );
 }
-
-export const OrderList = () => {
-  return <div></div>;
-};
-
-const AccordionSum = styled(AccordionSummary)``;
