@@ -1,12 +1,9 @@
 import React, { Children, useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Toggle from "./toggle";
-import { RECEPTION_ORDER_LIST,items } from "./items";
 
-
-
-const DraggableList = ({children}) => {
-  const [state, setState] = useState(null);
+const DraggableList = ({ items, children, state, setState }) => {
+  // const [state, setState] = useState(null);
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -24,7 +21,6 @@ const DraggableList = ({children}) => {
   }, []);
 
   return (
-    
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="top-container">
         {(provided) => (

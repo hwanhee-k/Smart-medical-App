@@ -4,32 +4,37 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import styled from "styled-components";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-export default function Toggle({ name, content, id, children }) {
+export default function Toggle({ items, state, setState }) {
+  console.log("state", state);
   return (
     <div>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>뎁스1</Typography>
-        </AccordionSummary>
-
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
+      1
+      {/* {state?.map(({ id, name, content }, index) => (
+        <Draggable draggableId={id} key={id} index={index}>
+          {(provided) => (
+            <div
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              key={id}
+              className="name"
             >
-              <Typography>뎁스1</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>뎁스2</Typography>
-            </AccordionDetails>
-          </Accordion>
-      </Accordion>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content1"
+                  id="panel1a-header1"
+                >
+                  <Typography>뎁스1</Typography>
+                </AccordionSummary>
+              </Accordion>
+            </div>
+          )}
+        </Draggable>
+      ))} */}
     </div>
   );
 }
@@ -37,3 +42,5 @@ export default function Toggle({ name, content, id, children }) {
 export const OrderList = () => {
   return <div></div>;
 };
+
+const AccordionSum = styled(AccordionSummary)``;
