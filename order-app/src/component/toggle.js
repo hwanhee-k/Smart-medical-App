@@ -1,11 +1,11 @@
 import * as React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import styled from "styled-components";
+// import Accordion from "@mui/material/Accordion";
+// import AccordionSummary from "@mui/material/AccordionSummary";
+// import AccordionDetails from "@mui/material/AccordionDetails";
+// import Typography from "@mui/material/Typography";
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import CustomAccordion from "./CustomAccordion";
 
 export default function Toggle({ items, state, setState }) {
   console.log("state", state);
@@ -21,15 +21,7 @@ export default function Toggle({ items, state, setState }) {
               key={id}
               className="name"
             >
-              <Accordion>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content1"
-                  id="panel1a-header1"
-                >
-                  <Typography>{name}</Typography>
-                </AccordionSummary>
-              </Accordion>
+              <CustomAccordion />
             </div>
           )}
         </Draggable>
