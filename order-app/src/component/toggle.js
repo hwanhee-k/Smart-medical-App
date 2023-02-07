@@ -1,14 +1,11 @@
-import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import * as React from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-
-
-export default function Toggle({name,content,id,children,c,i}) {
-  console.log(children);
+export default function Toggle({ name, content, id, children }) {
   return (
     <div>
       <Accordion>
@@ -17,22 +14,26 @@ export default function Toggle({name,content,id,children,c,i}) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography >{name}</Typography>
+          <Typography>뎁스1</Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <Typography name={name} content={content} id={id}>
-            {children}
-          </Typography>
-        </AccordionDetails>
+
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>뎁스1</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>뎁스2</Typography>
+            </AccordionDetails>
+          </Accordion>
       </Accordion>
     </div>
   );
 }
 
-
 export const OrderList = () => {
-
-    return(
-        <div></div>
-    );
-}
+  return <div></div>;
+};

@@ -1,16 +1,11 @@
 import React, { Children, useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Toggle from "./toggle";
+import { RECEPTION_ORDER_LIST,items } from "./items";
 
-// const RECEPTION_ORDER_LIST = ["접수대", "진료실", "진료실 앞 안내", "수납"];
-// const items = [
-//   { id: "1", name: "박세창", content: RECEPTION_ORDER_LIST },
-//   { id: "2", name: "신어진", content: RECEPTION_ORDER_LIST },
-//   { id: "3", name: "홍대기", content: RECEPTION_ORDER_LIST },
-//   { id: "4", name: "강성율", content: RECEPTION_ORDER_LIST },
-// ];
 
-const DraggableList = ({items}) => {
+
+const DraggableList = ({children}) => {
   const [state, setState] = useState(null);
 
   const onDragEnd = (result) => {
@@ -25,6 +20,7 @@ const DraggableList = ({items}) => {
 
   useEffect(() => {
     setState(items);
+    console.log(items);
   }, []);
 
   return (
@@ -48,11 +44,7 @@ const DraggableList = ({items}) => {
                       key={id}
                       className="name"
                     >
-                      <Toggle name={name} content={content} id={id}>
-                        {content.map((con,index)=>(
-                          <div>{con}</div>
-                        ))}
-                      </Toggle>
+                      {children}
                     </div>
                   )}
                 </Draggable>
