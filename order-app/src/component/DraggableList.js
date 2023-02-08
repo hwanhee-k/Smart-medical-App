@@ -9,6 +9,7 @@ const DraggableList = ({
 }) => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      <div>{nestedState}</div>
       <Droppable droppableId="top-container">
         {(provided) => (
           <div
