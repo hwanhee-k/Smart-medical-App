@@ -19,8 +19,8 @@ const DraggableList = ({
             <div className="name-container">
               {nestedState?.map((depthNameEach, index) => (
                 <Draggable
-                  draggableId={depthNameEach + index}
-                  key={depthNameEach + index}
+                  draggableId={index.toString()}
+                  key={index.toString()}
                   index={index}
                 >
                   {(provided) => (
