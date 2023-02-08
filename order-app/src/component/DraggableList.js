@@ -1,9 +1,10 @@
 import React, { Children, useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import CustomAccordion from "./CustomAccordion";
 import Toggle from "./toggle";
 
-const DraggableList = ({ depthName, children, state, setState, onDragEnd }) => {
-  console.log(depthName);
+const DraggableList = ({ children, onDragEnd, state, setState }) => {
+  const Component = <CustomAccordion></CustomAccordion>;
   // const [state, setState] = useState(null);
 
   // const onDragEnd = (result) => {
@@ -17,11 +18,6 @@ const DraggableList = ({ depthName, children, state, setState, onDragEnd }) => {
   //   console.log(originData);
   // };
 
-  useEffect(() => {
-    setState(depthName);
-    console.log(depthName);
-  }, []);
-
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="top-container">
@@ -32,22 +28,25 @@ const DraggableList = ({ depthName, children, state, setState, onDragEnd }) => {
             {...provided.droppableProps}
           >
             <div className="name-container">
-              {/* {state?.map(({ id, name, content }, index) => (
-                <Draggable draggableId={id} key={id} index={index}>
+              {state?.map((depthNameEach, index) => (
+                <Draggable
+                  draggableId={depthNameEach + index}
+                  key={depthNameEach + index}
+                  index={index}
+                >
                   {(provided) => (
                     <div
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
-                      key={id}
+                      key={depthNameEach + index}
                       className="name"
                     >
-                      {children}
+                      <div>{children}</div>
                     </div>
                   )}
                 </Draggable>
-              ))} */}
-              {children}
+              ))}
               {provided.placeholder}
             </div>
           </div>
@@ -58,3 +57,15 @@ const DraggableList = ({ depthName, children, state, setState, onDragEnd }) => {
 };
 
 export default DraggableList;
+
+export const NestedDnd = ({ children, state, setState }) => {
+  return (
+    <DraggableList state={state} setState={setState}>
+      <CustomAccordion state={state} setState={setState}>
+        <DraggableList state={state} setState={setState}>
+          <CustomAccordion state={state} setState={setState}></CustomAccordion>
+        </DraggableList>
+      </CustomAccordion>
+    </DraggableList>
+  );
+};

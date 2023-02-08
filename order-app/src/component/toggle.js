@@ -7,11 +7,10 @@ import * as React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import CustomAccordion from "./CustomAccordion";
 
-export default function Toggle({ items, state, setState, children }) {
+export default function Toggle({ state, setState, children }) {
   return (
     <div>
       {/* map도 변수화 */}
-      {}
       {state?.map((depthNameEach, index) => (
         <Draggable
           draggableId={depthNameEach + index}
@@ -26,7 +25,7 @@ export default function Toggle({ items, state, setState, children }) {
               key={depthNameEach + index}
               className="name"
             >
-              <div depthNameEach={depthNameEach}>{children}</div>
+              {/* <CustomAccordion></CustomAccordion> */}
             </div>
           )}
         </Draggable>
