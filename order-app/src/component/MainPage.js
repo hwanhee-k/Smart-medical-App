@@ -56,9 +56,9 @@ const MainPage = ({ children }) => {
         setNestedState={setNestedState}
         onDragEnd={onDragEnd}
       >
-        {/* <DraggableList
+        <DraggableList
           level="level2"
-          nestedState={nestedState}
+          // nestedState={nestedState}
           setNestedState={setNestedState}
           onDragEnd={onDragEnd}
         >
@@ -68,7 +68,7 @@ const MainPage = ({ children }) => {
             setNestedState={setNestedState}
             onDragEnd={onDragEnd}
           >
-            <DraggableList
+            {/* <DraggableList
               level="level3"
               nestedState={nestedState}
               setNestedState={setNestedState}
@@ -80,9 +80,9 @@ const MainPage = ({ children }) => {
                 setNestedState={setNestedState}
                 onDragEnd={onDragEnd}
               />
-            </DraggableList>
+            </DraggableList> */}
           </CustomAccordion>
-        </DraggableList> */}
+        </DraggableList>
       </CustomAccordion>
     </DraggableList>
   );
