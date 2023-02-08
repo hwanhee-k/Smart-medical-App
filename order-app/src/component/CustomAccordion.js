@@ -5,7 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const CustomAccordion = () => {
+const CustomAccordion = ({ id, name, content, children }) => {
   return (
     <Accordion>
       <AccordionSummary
@@ -13,8 +13,9 @@ const CustomAccordion = () => {
         aria-controls="panel1a-content1"
         id="panel1a-header1"
       >
-        <Typography>아코디언써머리</Typography>
+        <Typography>{name}</Typography>
       </AccordionSummary>
+      {children}
     </Accordion>
   );
 };

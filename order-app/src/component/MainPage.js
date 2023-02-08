@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CustomAccordion from "./CustomAccordion";
 
 import DraggableList from "./DraggableList";
 import Toggle from "./toggle";
@@ -25,7 +26,9 @@ const MainPage = ({ children }) => {
 
   return (
     <DraggableList items={items} state={state} setState={setState}>
-      <Toggle items={items} state={state} setState={setState} />
+      <Toggle items={items} state={state} setState={setState}>
+        <CustomAccordion />
+      </Toggle>
     </DraggableList>
   );
 };

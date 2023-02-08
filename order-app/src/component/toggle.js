@@ -7,7 +7,7 @@ import * as React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import CustomAccordion from "./CustomAccordion";
 
-export default function Toggle({ items, state, setState }) {
+export default function Toggle({ items, state, setState, children }) {
   console.log("state", state);
   return (
     <div>
@@ -21,7 +21,9 @@ export default function Toggle({ items, state, setState }) {
               key={id}
               className="name"
             >
-              <CustomAccordion />
+              <CustomAccordion id={id} name={name} content={content}>
+                <CustomAccordion></CustomAccordion>
+              </CustomAccordion>
             </div>
           )}
         </Draggable>
