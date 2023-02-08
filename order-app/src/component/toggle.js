@@ -1,39 +1,35 @@
 import * as React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+// import Accordion from "@mui/material/Accordion";
+// import AccordionSummary from "@mui/material/AccordionSummary";
+// import AccordionDetails from "@mui/material/AccordionDetails";
+// import Typography from "@mui/material/Typography";
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import CustomAccordion from "./CustomAccordion";
 
-export default function Toggle({ name, content, id, children }) {
+export default function Toggle({ state, setState, children }) {
   return (
     <div>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
+      {/* map도 변수화 */}
+      {state?.map((depthNameEach, index) => (
+        <Draggable
+          draggableId={depthNameEach + index}
+          key={depthNameEach + index}
+          index={index}
         >
-          <Typography>뎁스1</Typography>
-        </AccordionSummary>
-
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
+          {(provided) => (
+            <div
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              key={depthNameEach + index}
+              className="name"
             >
-              <Typography>뎁스1</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>뎁스2</Typography>
-            </AccordionDetails>
-          </Accordion>
-      </Accordion>
+              {/* <CustomAccordion ></CustomAccordion> */}
+            </div>
+          )}
+        </Draggable>
+      ))}
     </div>
   );
 }
-
-export const OrderList = () => {
-  return <div></div>;
-};

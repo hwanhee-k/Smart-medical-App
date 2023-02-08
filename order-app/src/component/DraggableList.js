@@ -1,30 +1,13 @@
 import React, { Children, useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import Toggle from "./toggle";
-import { RECEPTION_ORDER_LIST,items } from "./items";
 
-
-
-const DraggableList = ({children}) => {
-  const [state, setState] = useState(null);
-
-  const onDragEnd = (result) => {
-    if (!result.destination) {
-      return;
-    }
-    const originData = [...state];
-    const [reorderedData] = originData.splice(result.source.index, 1);
-    originData.splice(result.destination.index, 0, reorderedData);
-    setState(originData);
-  };
-
-  useEffect(() => {
-    setState(items);
-    console.log(items);
-  }, []);
-
+const DraggableList = ({
+  children,
+  onDragEnd,
+  nestedState,
+  setNestedState,
+}) => {
   return (
-    
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="top-container">
         {(provided) => (
@@ -34,17 +17,25 @@ const DraggableList = ({children}) => {
             {...provided.droppableProps}
           >
             <div className="name-container">
-              {state?.map(({ id, name, content }, index) => (
-                <Draggable draggableId={id} key={id} index={index}>
+              {nestedState?.map((depthNameEach, index) => (
+                <Draggable
+                  draggableId={index.toString()}
+                  key={index.toString()}
+                  index={index}
+                >
                   {(provided) => (
                     <div
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
-                      key={id}
+                      key={depthNameEach + index}
                       className="name"
                     >
-                      {children}
+                      <div>
+                        {Children.map(children, (child) =>
+                          React.cloneElement(child, { index })
+                        )}
+                      </div>
                     </div>
                   )}
                 </Draggable>
