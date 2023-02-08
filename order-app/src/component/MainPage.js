@@ -15,24 +15,47 @@ const MainPage = ({ children }) => {
   //   { id: "4", name: "강성율", content: RECEPTION_ORDER_LIST },
   // ];
 
-  const [state, setState] = useState(patientName);
+  const [nestedState, setNestedState] = useState(patientName);
 
   const onDragEnd = (result) => {
     console.log(result);
     if (!result.destination) {
       return;
     }
-    const originData = [...state];
+    if (nestedState === patientName) {
+      setNestedState(patientName);
+    } else if (nestedState === RECEPTION_ORDER_LIST) {
+      setNestedState(RECEPTION_ORDER_LIST);
+    } else {
+      setNestedState(todo);
+    }
+    const originData = [...nestedState];
     const [reorderedData] = originData.splice(result.source.index, 1);
     originData.splice(result.destination.index, 0, reorderedData);
-    setState(originData);
+    setNestedState(originData);
   };
 
   return (
-    <DraggableList state={state} setState={setState} onDragEnd={onDragEnd}>
-      <CustomAccordion state={state} setState={setState}>
-        <DraggableList state={state} setState={setState} onDragEnd={onDragEnd}>
-          <CustomAccordion state={state} setState={setState} />
+    <DraggableList
+      nestedState={patientName}
+      setNestedState={setNestedState}
+      onDragEnd={onDragEnd}
+    >
+      <CustomAccordion
+        nestedState={patientName}
+        setNestedState={setNestedState}
+        onDragEnd={onDragEnd}
+      >
+        <DraggableList
+          nestedState={RECEPTION_ORDER_LIST}
+          setNestedState={setNestedState}
+          onDragEnd={onDragEnd}
+        >
+          <CustomAccordion
+            nestedState={RECEPTION_ORDER_LIST}
+            setNestedState={setNestedState}
+            onDragEnd={onDragEnd}
+          />
         </DraggableList>
       </CustomAccordion>
     </DraggableList>

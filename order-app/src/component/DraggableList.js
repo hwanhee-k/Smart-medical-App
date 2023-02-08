@@ -1,9 +1,12 @@
 import React, { Children, useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import CustomAccordion from "./CustomAccordion";
-import Toggle from "./toggle";
 
-const DraggableList = ({ children, onDragEnd, state, setState }) => {
+const DraggableList = ({
+  children,
+  onDragEnd,
+  nestedState,
+  setNestedState,
+}) => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="top-container">
@@ -14,7 +17,7 @@ const DraggableList = ({ children, onDragEnd, state, setState }) => {
             {...provided.droppableProps}
           >
             <div className="name-container">
-              {state?.map((depthNameEach, index) => (
+              {nestedState?.map((depthNameEach, index) => (
                 <Draggable
                   draggableId={depthNameEach + index}
                   key={depthNameEach + index}
