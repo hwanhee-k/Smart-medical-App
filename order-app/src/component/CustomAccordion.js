@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DraggableList from "./DraggableList";
 import Toggle from "./toggle";
 
-const CustomAccordion = ({ children, state, setState }) => {
+const CustomAccordion = ({ children, state, setState, index }) => {
   console.log(state);
   return (
     <Accordion>
@@ -16,7 +16,7 @@ const CustomAccordion = ({ children, state, setState }) => {
         aria-controls="panel1a-content1"
         id="panel1a-header1"
       >
-        <Typography>{state}</Typography>
+        <Typography>{state[index]}</Typography>
       </AccordionSummary>
       {children}
     </Accordion>

@@ -4,20 +4,6 @@ import CustomAccordion from "./CustomAccordion";
 import Toggle from "./toggle";
 
 const DraggableList = ({ children, onDragEnd, state, setState }) => {
-  const Component = <CustomAccordion></CustomAccordion>;
-  // const [state, setState] = useState(null);
-
-  // const onDragEnd = (result) => {
-  //   if (!result.destination) {
-  //     return;
-  //   }
-  //   const originData = [...state];
-  //   const [reorderedData] = originData.splice(result.source.index, 1);
-  //   originData.splice(result.destination.index, 0, reorderedData);
-  //   setState(originData);
-  //   console.log(originData);
-  // };
-
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="top-container">
@@ -42,7 +28,11 @@ const DraggableList = ({ children, onDragEnd, state, setState }) => {
                       key={depthNameEach + index}
                       className="name"
                     >
-                      <div>{children}</div>
+                      <div>
+                        {Children.map(children, (child) =>
+                          React.cloneElement(child, { index })
+                        )}
+                      </div>
                     </div>
                   )}
                 </Draggable>
@@ -57,15 +47,3 @@ const DraggableList = ({ children, onDragEnd, state, setState }) => {
 };
 
 export default DraggableList;
-
-export const NestedDnd = ({ children, state, setState }) => {
-  return (
-    <DraggableList state={state} setState={setState}>
-      <CustomAccordion state={state} setState={setState}>
-        <DraggableList state={state} setState={setState}>
-          <CustomAccordion state={state} setState={setState}></CustomAccordion>
-        </DraggableList>
-      </CustomAccordion>
-    </DraggableList>
-  );
-};

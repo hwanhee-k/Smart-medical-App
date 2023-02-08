@@ -28,7 +28,15 @@ const MainPage = ({ children }) => {
     setState(originData);
   };
 
-  return <NestedDnd state={state} setState={setState} />;
+  return (
+    <DraggableList state={state} setState={setState} onDragEnd={onDragEnd}>
+      <CustomAccordion state={state} setState={setState}>
+        <DraggableList state={state} setState={setState} onDragEnd={onDragEnd}>
+          <CustomAccordion state={state} setState={setState} />
+        </DraggableList>
+      </CustomAccordion>
+    </DraggableList>
+  );
 };
 
 export default MainPage;
