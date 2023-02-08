@@ -4,20 +4,23 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import DraggableList from "./DraggableList";
+import Toggle from "./toggle";
 
-const CustomAccordion = ({ id, name, content, children }) => {
+const CustomAccordion = ({ state, setState, children, depthNameEach }) => {
+  console.log(depthNameEach);
   return (
-    <Accordion>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1a-content1"
-        id="panel1a-header1"
-      >
-        <Typography>{name}</Typography>
-      </AccordionSummary>
-
-      {children}
-    </Accordion>
+    <Toggle state={state} setState={setState}>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content1"
+          id="panel1a-header1"
+        >
+          <Typography>{depthNameEach}</Typography>
+        </AccordionSummary>
+      </Accordion>
+    </Toggle>
   );
 };
 

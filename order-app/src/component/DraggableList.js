@@ -2,22 +2,24 @@ import React, { Children, useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Toggle from "./toggle";
 
-const DraggableList = ({ items, children, state, setState }) => {
+const DraggableList = ({ depthName, children, state, setState, onDragEnd }) => {
+  console.log(depthName);
   // const [state, setState] = useState(null);
 
-  const onDragEnd = (result) => {
-    if (!result.destination) {
-      return;
-    }
-    const originData = [...state];
-    const [reorderedData] = originData.splice(result.source.index, 1);
-    originData.splice(result.destination.index, 0, reorderedData);
-    setState(originData);
-  };
+  // const onDragEnd = (result) => {
+  //   if (!result.destination) {
+  //     return;
+  //   }
+  //   const originData = [...state];
+  //   const [reorderedData] = originData.splice(result.source.index, 1);
+  //   originData.splice(result.destination.index, 0, reorderedData);
+  //   setState(originData);
+  //   console.log(originData);
+  // };
 
   useEffect(() => {
-    setState(items);
-    console.log(items);
+    setState(depthName);
+    console.log(depthName);
   }, []);
 
   return (

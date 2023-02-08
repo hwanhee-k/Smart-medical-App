@@ -8,23 +8,25 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import CustomAccordion from "./CustomAccordion";
 
 export default function Toggle({ items, state, setState, children }) {
-  console.log("state", state);
   return (
     <div>
       {/* map도 변수화 */}
-      {state?.map(({ id, name, content }, index) => (
-        <Draggable draggableId={id} key={id} index={index}>
+      {}
+      {state?.map((depthNameEach, index) => (
+        <Draggable
+          draggableId={depthNameEach + index}
+          key={depthNameEach + index}
+          index={index}
+        >
           {(provided) => (
             <div
               {...provided.draggableProps}
               {...provided.dragHandleProps}
               ref={provided.innerRef}
-              key={id}
+              key={depthNameEach + index}
               className="name"
             >
-              <CustomAccordion id={id} name={name} content={content}>
-                {/* content맵 들어갈자리 */}
-              </CustomAccordion>
+              <div depthNameEach={depthNameEach}>{children}</div>
             </div>
           )}
         </Draggable>
