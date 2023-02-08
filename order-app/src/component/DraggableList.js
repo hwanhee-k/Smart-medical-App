@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { Children } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const DraggableList = ({
@@ -8,11 +8,15 @@ const DraggableList = ({
   setNestedState,
   level,
   contents,
+  id,
+  orderName
 }) => {
-  if(level === "level2"){
-    nestedState = contents
-  } else if (level === "level3"){
-    nestedState = contents
+
+  if (level === "level2") {
+    nestedState = contents;
+  } else if (level === "level3") {
+    nestedState = contents;
+
   }
 
   return (
@@ -27,7 +31,13 @@ const DraggableList = ({
             <div className="name-container">
               {nestedState?.map((depthNameEach, index) => (
                 <Draggable
-                  draggableId={index.toString()}
+                  draggableId={
+                    level === "level1"
+                      ? index.toString()
+                      : level === "level2"
+                      ? `${index.toString() }_${id}`
+                      : `${index.toString() }_${id}_${orderName}`
+                  }
                   key={index.toString()}
                   index={index}
                 >
@@ -50,10 +60,13 @@ const DraggableList = ({
                                     name: depthNameEach.name,
                                     contents: depthNameEach.contents,
                                   }
-                                : level === "level2" ? {name: depthNameEach.name, todo: depthNameEach.todo}
-                                : {todo: depthNameEach}
-
-                                
+                                : level === "level2"
+                                ? {
+                                    id,
+                                    orderName: depthNameEach.name,
+                                    todo: depthNameEach.todo,
+                                  }
+                                : { todo: depthNameEach, id, orderName: orderName },
                           })
                         )}
                       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CustomAccordion from "./CustomAccordion";
 
 import DraggableList from "./DraggableList";
@@ -21,27 +21,67 @@ const MainPage = ({ children }) => {
   ];
 
   const [nestedState, setNestedState] = useState(DATA);
-  console.log(nestedState.map((item) => item.contents));
+
+  const createReorderedData = (arr, start_idx, end_idx) => {
+    const originData = [...arr];
+    const [reorderedData] = originData.splice(start_idx, 1);
+    originData.splice(end_idx, 0, reorderedData);
+    return originData;
+  };
 
   const onDragEnd = (result) => {
-    console.log(result);
     if (!result.destination) {
       return;
     }
-    if (nestedState === patientName) {
-      setNestedState(patientName);
-    } else if (nestedState === RECEPTION_ORDER_LIST) {
-      setNestedState(RECEPTION_ORDER_LIST);
-    } else {
-      setNestedState(todo);
+    if (result.draggableId.split("_").length === 1) {
+      const originData = [...nestedState];
+      const [reorderedData] = originData.splice(result.source.index, 1);
+      originData.splice(result.destination.index, 0, reorderedData);
+      setNestedState(originData);
     }
 
-    const originData = [...nestedState];
-    const [reorderedData] = originData.splice(result.source.index, 1);
-    console.log("reorderedData : ", reorderedData);
-    originData.splice(result.destination.index, 0, reorderedData);
-    setNestedState(originData);
-    console.log(originData);
+    if (result.draggableId.split("_").length === 2) {
+      const targetPatientId = result.draggableId.split("_")[1];
+      setNestedState(
+        nestedState.map((item) => {
+          if (item.id.toString() === targetPatientId.toString()) {
+            const originData = createReorderedData(
+              item.contents,
+              result.source.index,
+              result.destination.index
+            );
+            return { ...item, contents: [...originData] };
+          } else {
+            return item;
+          }
+        })
+      );
+    }
+    if (result.draggableId.split("_").length === 3) {
+      const targetPatientId = result.draggableId.split("_")[1];
+      const targetOrderName = result.draggableId.split("_")[2];
+      setNestedState(
+        nestedState.map((item) => {
+          if (item.id.toString() === targetPatientId.toString()) {
+            let contents = item.contents.map((content) => {
+              if (content.name === targetOrderName) {
+                const originData = createReorderedData(
+                  content.todo,
+                  result.source.index,
+                  result.destination.index
+                );
+                return {...content, todo: originData}
+              } else {
+                return content
+              }
+            }); 
+            return { ...item, contents };
+          } else {
+            return item;
+          }
+        })
+      );
+    }
   };
   return (
     <DraggableList
