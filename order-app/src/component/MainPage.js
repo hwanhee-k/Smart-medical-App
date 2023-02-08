@@ -43,7 +43,6 @@ const MainPage = ({ children }) => {
     setNestedState(originData);
     console.log(originData);
   };
-  // nestedState.map((item) => item.name)
   return (
     <DraggableList
       level="level1"
@@ -53,11 +52,11 @@ const MainPage = ({ children }) => {
     >
       <CustomAccordion
         level="level1"
-        nestedState={nestedState}
+        // nestedState={nestedState}
         setNestedState={setNestedState}
         onDragEnd={onDragEnd}
       >
-        <DraggableList
+        {/* <DraggableList
           level="level2"
           nestedState={nestedState}
           setNestedState={setNestedState}
@@ -65,7 +64,7 @@ const MainPage = ({ children }) => {
         >
           <CustomAccordion
             level="level2"
-            nestedState={nestedState}
+            // nestedState={nestedState}
             setNestedState={setNestedState}
             onDragEnd={onDragEnd}
           >
@@ -77,13 +76,13 @@ const MainPage = ({ children }) => {
             >
               <CustomAccordion
                 level="level3"
-                nestedState={nestedState}
+                // nestedState={nestedState}
                 setNestedState={setNestedState}
                 onDragEnd={onDragEnd}
               />
             </DraggableList>
           </CustomAccordion>
-        </DraggableList>
+        </DraggableList> */}
       </CustomAccordion>
     </DraggableList>
   );

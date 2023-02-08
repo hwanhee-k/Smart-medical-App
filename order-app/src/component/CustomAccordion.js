@@ -4,7 +4,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const CustomAccordion = ({ children, nestedState, setNestedState, index }) => {
+const CustomAccordion = ({ children, setNestedState, index, nestedState }) => {
+  console.log(nestedState);
   return (
     <Accordion>
       <AccordionSummary

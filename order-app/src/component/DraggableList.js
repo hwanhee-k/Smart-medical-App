@@ -6,10 +6,16 @@ const DraggableList = ({
   onDragEnd,
   nestedState,
   setNestedState,
+  level,
 }) => {
+  if (level === "level1") {
+    nestedState = nestedState.map((item) => item.name);
+    console.log(nestedState);
+  }
+  
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div>{nestedState}</div>
       <Droppable droppableId="top-container">
         {(provided) => (
           <div
@@ -34,7 +40,7 @@ const DraggableList = ({
                     >
                       <div>
                         {Children.map(children, (child) =>
-                          React.cloneElement(child, { index })
+                          React.cloneElement(child, { index,nestedState })
                         )}
                       </div>
                     </div>
