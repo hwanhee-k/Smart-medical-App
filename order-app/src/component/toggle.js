@@ -11,6 +11,7 @@ export default function Toggle({ items, state, setState, children }) {
   console.log("state", state);
   return (
     <div>
+      {/* map도 변수화 */}
       {state?.map(({ id, name, content }, index) => (
         <Draggable draggableId={id} key={id} index={index}>
           {(provided) => (
@@ -22,7 +23,7 @@ export default function Toggle({ items, state, setState, children }) {
               className="name"
             >
               <CustomAccordion id={id} name={name} content={content}>
-                <CustomAccordion></CustomAccordion>
+                {/* content맵 들어갈자리 */}
               </CustomAccordion>
             </div>
           )}

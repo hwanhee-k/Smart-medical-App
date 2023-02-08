@@ -15,6 +15,7 @@ const CustomAccordion = ({ id, name, content, children }) => {
       >
         <Typography>{name}</Typography>
       </AccordionSummary>
+
       {children}
     </Accordion>
   );

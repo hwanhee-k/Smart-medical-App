@@ -26,9 +26,7 @@ const MainPage = ({ children }) => {
 
   return (
     <DraggableList items={items} state={state} setState={setState}>
-      <Toggle items={items} state={state} setState={setState}>
-        <CustomAccordion />
-      </Toggle>
+      <Toggle items={items} state={state} setState={setState}></Toggle>
     </DraggableList>
   );
 };
