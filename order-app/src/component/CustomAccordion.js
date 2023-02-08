@@ -4,8 +4,20 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const CustomAccordion = ({ children, setNestedState, id, text,contents }) => {
-  console.log(id,text,contents);
+const CustomAccordion = ({ children,level, setNestedState, propsData }) => {
+  console.log(propsData)
+  let text = ""
+  let contents = []
+ if(level === "level1") {
+  text = propsData.name
+  contents = propsData.contents
+ } else if (level === "level2"){
+  text = propsData.name
+  contents = propsData.todo
+ } else if(level === "level3"){
+  text = propsData.todo
+ }
+console.log(contents)
   return (
     <Accordion>
       <AccordionSummary
@@ -16,7 +28,7 @@ const CustomAccordion = ({ children, setNestedState, id, text,contents }) => {
         <Typography>{text}</Typography>
       </AccordionSummary>
       {Children.map(children, (child) =>
-        React.cloneElement(child, { contents, id, text })
+        React.cloneElement(child, {contents})
       )}
     </Accordion>      
   );

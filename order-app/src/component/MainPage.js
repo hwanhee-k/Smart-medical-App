@@ -52,23 +52,20 @@ const MainPage = ({ children }) => {
     >
       <CustomAccordion
         level="level1"
-        // nestedState={nestedState}
         setNestedState={setNestedState}
         onDragEnd={onDragEnd}
       >
         <DraggableList
           level="level2"
-          // nestedState={nestedState}
           setNestedState={setNestedState}
           onDragEnd={onDragEnd}
         >
           <CustomAccordion
             level="level2"
-            // nestedState={nestedState}
             setNestedState={setNestedState}
             onDragEnd={onDragEnd}
           >
-            {/* <DraggableList
+            <DraggableList
               level="level3"
               nestedState={nestedState}
               setNestedState={setNestedState}
@@ -76,11 +73,10 @@ const MainPage = ({ children }) => {
             >
               <CustomAccordion
                 level="level3"
-                // nestedState={nestedState}
                 setNestedState={setNestedState}
                 onDragEnd={onDragEnd}
               />
-            </DraggableList> */}
+            </DraggableList>
           </CustomAccordion>
         </DraggableList>
       </CustomAccordion>

@@ -7,13 +7,14 @@ const DraggableList = ({
   nestedState,
   setNestedState,
   level,
-  contents, 
+  contents,
 }) => {
-  // if (level === "level1") {
-  //   nestedState = nestedState.map((item) => item.name);
-  //   console.log(nestedState);
-  // }
-  console.log(contents);
+  if(level === "level2"){
+    nestedState = contents
+  } else if (level === "level3"){
+    nestedState = contents
+  }
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="top-container">
@@ -42,10 +43,17 @@ const DraggableList = ({
                         {Children.map(children, (child) =>
                           React.cloneElement(child, {
                             index,
-                            nestedState,
-                            id: depthNameEach.id,
-                            text: depthNameEach.name,
-                            contents: depthNameEach.contents
+                            propsData:
+                              level === "level1"
+                                ? {
+                                    id: depthNameEach.id,
+                                    name: depthNameEach.name,
+                                    contents: depthNameEach.contents,
+                                  }
+                                : level === "level2" ? {name: depthNameEach.name, todo: depthNameEach.todo}
+                                : {todo: depthNameEach}
+
+                                
                           })
                         )}
                       </div>
