@@ -8,10 +8,10 @@ const NestedDndMain = ({ children }) => {
   // const RECEPTION_ORDER_LIST = ["접수대", "진료실", "진료실 앞 안내", "수납"];
   // const patientName = ["박세창", "신어진", "홍대기", "강성율"];
   const CONTENTS = [
-    { name: "접수대", todo: [1, 2, 3, 4] },
-    { name: "진료실", todo: [1, 2, 3, 4] },
-    { name: "진료실 앞 안내", todo: [1, 2, 3, 4] },
-    { name: "수납", todo: [1, 2, 3, 4] },
+    { name: "접수대", todo: ["Todo1", "Todo1", "Todo1", "Todo1"] },
+    { name: "진료실", todo: ["Todo1", "Todo1", "Todo1", "Todo1"] },
+    { name: "진료실 앞 안내", todo: ["Todo1", "Todo1", "Todo1", "Todo1"] },
+    { name: "수납", todo: ["Todo1", "Todo1", "Todo1", "Todo1"] },
   ];
   const DATA = [
     { id: 1, name: "박세창", contents: CONTENTS },
@@ -21,6 +21,28 @@ const NestedDndMain = ({ children }) => {
   ];
 
   const [nestedState, setNestedState] = useState(DATA);
+  const [currentId, setCurrentId] = useState(5);
+  const [currentNameCount, setCurrentNameCount] = useState(1);
+
+  const getNextId = () => {
+    setCurrentId(currentId + 1);
+    return currentId;
+  };
+  const getNextName = () => {
+    setCurrentNameCount(currentNameCount + 1);
+    return `추가된 환자${currentNameCount}`;
+  };
+
+  const addPatient = () => {
+    setNestedState([
+      ...nestedState,
+      {
+        id: getNextId(),
+        name: getNextName(),
+        contents: CONTENTS,
+      },
+    ]);
+  };
 
   const createReorderedData = (arr, start_idx, end_idx) => {
     const originData = [...arr];
@@ -84,43 +106,46 @@ const NestedDndMain = ({ children }) => {
     }
   };
   return (
-    <DraggableList
-      level="level1"
-      nestedState={nestedState}
-      setNestedState={setNestedState}
-      onDragEnd={onDragEnd}
-    >
-      <CustomAccordion
+    <>
+      <button onClick={addPatient}>환자추가</button>
+      <DraggableList
         level="level1"
+        nestedState={nestedState}
         setNestedState={setNestedState}
         onDragEnd={onDragEnd}
       >
-        <DraggableList
-          level="level2"
+        <CustomAccordion
+          level="level1"
           setNestedState={setNestedState}
           onDragEnd={onDragEnd}
         >
-          <CustomAccordion
+          <DraggableList
             level="level2"
             setNestedState={setNestedState}
             onDragEnd={onDragEnd}
           >
-            <DraggableList
-              level="level3"
-              nestedState={nestedState}
+            <CustomAccordion
+              level="level2"
               setNestedState={setNestedState}
               onDragEnd={onDragEnd}
             >
-              <CustomAccordion
+              <DraggableList
                 level="level3"
+                nestedState={nestedState}
                 setNestedState={setNestedState}
                 onDragEnd={onDragEnd}
-              />
-            </DraggableList>
-          </CustomAccordion>
-        </DraggableList>
-      </CustomAccordion>
-    </DraggableList>
+              >
+                <CustomAccordion
+                  level="level3"
+                  setNestedState={setNestedState}
+                  onDragEnd={onDragEnd}
+                />
+              </DraggableList>
+            </CustomAccordion>
+          </DraggableList>
+        </CustomAccordion>
+      </DraggableList>
+    </>
   );
 };
 
