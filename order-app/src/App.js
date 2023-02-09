@@ -1,17 +1,8 @@
-import { Routes, Route } from "react-router-dom";
-import MainPage from "./page/MainPage";
-
+import MainPage from "./component/MainPage";
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route exact path="/" element={<MainPage />} />
-        {/* <Route
-          exact
-          path="/reception/:content/:name"
-          element={<ReceptionPage />}
-        /> */}
-      </Routes>
+      <MainPage />
     </div>
   );
 }
