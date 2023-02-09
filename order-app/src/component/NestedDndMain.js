@@ -4,9 +4,6 @@ import CustomAccordion from "./CustomAccordion";
 import DraggableList from "./DraggableList";
 
 const NestedDndMain = ({ children }) => {
-  // const todo = ["1", "2", "3", "4"];
-  // const RECEPTION_ORDER_LIST = ["접수대", "진료실", "진료실 앞 안내", "수납"];
-  // const patientName = ["박세창", "신어진", "홍대기", "강성율"];
   const CONTENTS = [
     { name: "접수대", todo: ["Todo1", "Todo1", "Todo1", "Todo1"] },
     { name: "진료실", todo: ["Todo1", "Todo1", "Todo1", "Todo1"] },
@@ -112,7 +109,8 @@ const NestedDndMain = ({ children }) => {
         level="level1"
         nestedState={nestedState}
         setNestedState={setNestedState}
-        onDragEnd={onDragEnd}
+        onDragE
+        nd={onDragEnd}
       >
         <CustomAccordion
           level="level1"
