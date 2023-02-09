@@ -1,5 +1,6 @@
 import React, { Children } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import styled from "styled-components";
 
 const DraggableList = ({
   children,
@@ -47,7 +48,7 @@ const DraggableList = ({
                       key={depthNameEach + index}
                       className="name"
                     >
-                      <div>
+                      <DragContentContainer>
                         {Children.map(children, (child) =>
                           React.cloneElement(child, {
                             index,
@@ -71,7 +72,7 @@ const DraggableList = ({
                                   },
                           })
                         )}
-                      </div>
+                      </DragContentContainer>
                     </div>
                   )}
                 </Draggable>
@@ -88,11 +89,6 @@ const DraggableList = ({
 export default DraggableList;
 
 const DragContentContainer = styled.div`
-  width: 90vw;
+  width: 100vw;
   display: flex;
-  justify-content: space-between;
-`;
-
-const DragHandleIconSpan = styled.span`
-  vertical-align: middle;
 `;

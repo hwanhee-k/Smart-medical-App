@@ -1,4 +1,5 @@
-import MainPage from "./component/MainPage";
+import MainPage from "./page/MainPage";
+
 function App() {
   return (
     <div className="App">

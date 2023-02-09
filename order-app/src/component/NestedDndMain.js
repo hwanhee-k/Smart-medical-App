@@ -3,10 +3,10 @@ import CustomAccordion from "./CustomAccordion";
 
 import DraggableList from "./DraggableList";
 
-const MainPage = ({ children }) => {
-  const todo = ["1", "2", "3", "4"];
-  const RECEPTION_ORDER_LIST = ["접수대", "진료실", "진료실 앞 안내", "수납"];
-  const patientName = ["박세창", "신어진", "홍대기", "강성율"];
+const NestedDndMain = ({ children }) => {
+  // const todo = ["1", "2", "3", "4"];
+  // const RECEPTION_ORDER_LIST = ["접수대", "진료실", "진료실 앞 안내", "수납"];
+  // const patientName = ["박세창", "신어진", "홍대기", "강성율"];
   const CONTENTS = [
     { name: "접수대", todo: [1, 2, 3, 4] },
     { name: "진료실", todo: [1, 2, 3, 4] },
@@ -70,11 +70,11 @@ const MainPage = ({ children }) => {
                   result.source.index,
                   result.destination.index
                 );
-                return {...content, todo: originData}
+                return { ...content, todo: originData };
               } else {
-                return content
+                return content;
               }
-            }); 
+            });
             return { ...item, contents };
           } else {
             return item;
@@ -124,4 +124,4 @@ const MainPage = ({ children }) => {
   );
 };
 
-export default MainPage;
+export default NestedDndMain;

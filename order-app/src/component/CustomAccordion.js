@@ -3,6 +3,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import styled from "styled-components";
 
 const CustomAccordion = ({ children, level, setNestedState, propsData }) => {
   let text = "";
@@ -21,7 +22,7 @@ const CustomAccordion = ({ children, level, setNestedState, propsData }) => {
     id = propsData.id;
   }
   return (
-    <Accordion>
+    <AccordionContainer>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content1"
@@ -30,10 +31,18 @@ const CustomAccordion = ({ children, level, setNestedState, propsData }) => {
         <Typography>{text}</Typography>
       </AccordionSummary>
       {Children.map(children, (child) =>
-        React.cloneElement(child, { contents, id, orderName: propsData.orderName })
+        React.cloneElement(child, {
+          contents,
+          id,
+          orderName: propsData.orderName,
+        })
       )}
-    </Accordion>
+    </AccordionContainer>
   );
 };
 
 export default CustomAccordion;
+
+const AccordionContainer = styled(Accordion)`
+  width: 100%;
+`;
