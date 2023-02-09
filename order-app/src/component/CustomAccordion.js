@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import styled from "styled-components";
 
-const CustomAccordion = ({ children, level, setNestedState, propsData }) => {
+const CustomAccordion = ({ children, level, propsData }) => {
   const [textState, setTextState] = useState("");
   const [writeState, setWriteState] = useState("기록중인 메세지");
   const [isUpdate, setIsUpdate] = useState(false);

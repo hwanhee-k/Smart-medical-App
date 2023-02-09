@@ -3,12 +3,12 @@ import CustomAccordion from "./CustomAccordion";
 
 import DraggableList from "./DraggableList";
 
-const NestedDndMain = ({ children }) => {
+const NestedDndMain = () => {
   const CONTENTS = [
-    { name: "접수대", todo: ["Todo1", "Todo1", "Todo1", "Todo1"] },
-    { name: "진료실", todo: ["Todo1", "Todo1", "Todo1", "Todo1"] },
-    { name: "진료실 앞 안내", todo: ["Todo1", "Todo1", "Todo1", "Todo1"] },
-    { name: "수납", todo: ["Todo1", "Todo1", "Todo1", "Todo1"] },
+    { name: "접수대", todo: ["Todo1", "Todo2", "Todo3", "Todo4"] },
+    { name: "진료실", todo: ["Todo1", "Todo2", "Todo3", "Todo4"] },
+    { name: "진료실 앞 안내", todo: ["Todo1", "Todo2", "Todo3", "Todo4"] },
+    { name: "수납", todo: ["Todo1", "Todo2", "Todo3", "Todo4"] },
   ];
   const DATA = [
     { id: 1, name: "박세창", contents: CONTENTS },
@@ -18,16 +18,13 @@ const NestedDndMain = ({ children }) => {
   ];
 
   const [nestedState, setNestedState] = useState(DATA);
-  const [currentId, setCurrentId] = useState(5);
-  const [currentNameCount, setCurrentNameCount] = useState(1);
 
   const getNextId = () => {
-    setCurrentId(currentId + 1);
-    return currentId;
+    const ids = nestedState.map((item) => item.id);
+    return Math.max(...ids) + 1;
   };
   const getNextName = () => {
-    setCurrentNameCount(currentNameCount + 1);
-    return `추가된 환자${currentNameCount}`;
+    return `추가된 환자${nestedState.length - 3}`;
   };
 
   const addPatient = () => {
@@ -42,10 +39,10 @@ const NestedDndMain = ({ children }) => {
   };
 
   const createReorderedData = (arr, start_idx, end_idx) => {
-    const originData = [...arr];
-    const [reorderedData] = originData.splice(start_idx, 1);
-    originData.splice(end_idx, 0, reorderedData);
-    return originData;
+    const newData = [...arr];
+    const [reorderedData] = newData.splice(start_idx, 1);
+    newData.splice(end_idx, 0, reorderedData);
+    return newData;
   };
 
   const onDragEnd = (result) => {
@@ -53,10 +50,13 @@ const NestedDndMain = ({ children }) => {
       return;
     }
     if (result.draggableId.split("_").length === 1) {
-      const originData = [...nestedState];
-      const [reorderedData] = originData.splice(result.source.index, 1);
-      originData.splice(result.destination.index, 0, reorderedData);
-      setNestedState(originData);
+      const newData = createReorderedData(
+        nestedState,
+        result.source.index,
+        result.destination.index
+      );
+  
+      setNestedState(newData);
     }
 
     if (result.draggableId.split("_").length === 2) {
@@ -64,12 +64,12 @@ const NestedDndMain = ({ children }) => {
       setNestedState(
         nestedState.map((item) => {
           if (item.id.toString() === targetPatientId.toString()) {
-            const originData = createReorderedData(
+            const newData = createReorderedData(
               item.contents,
               result.source.index,
               result.destination.index
             );
-            return { ...item, contents: [...originData] };
+            return { ...item, contents: [...newData] };
           } else {
             return item;
           }
@@ -84,12 +84,12 @@ const NestedDndMain = ({ children }) => {
           if (item.id.toString() === targetPatientId.toString()) {
             let contents = item.contents.map((content) => {
               if (content.name === targetOrderName) {
-                const originData = createReorderedData(
+                const newData = createReorderedData(
                   content.todo,
                   result.source.index,
                   result.destination.index
                 );
-                return { ...content, todo: originData };
+                return { ...content, todo: newData };
               } else {
                 return content;
               }
@@ -108,34 +108,26 @@ const NestedDndMain = ({ children }) => {
       <DraggableList
         level="level1"
         nestedState={nestedState}
-        setNestedState={setNestedState}
-        onDragE
-        nd={onDragEnd}
+        onDragEnd={onDragEnd}
       >
         <CustomAccordion
           level="level1"
-          setNestedState={setNestedState}
           onDragEnd={onDragEnd}
         >
           <DraggableList
             level="level2"
-            setNestedState={setNestedState}
             onDragEnd={onDragEnd}
           >
             <CustomAccordion
               level="level2"
-              setNestedState={setNestedState}
               onDragEnd={onDragEnd}
             >
               <DraggableList
                 level="level3"
-                nestedState={nestedState}
-                setNestedState={setNestedState}
                 onDragEnd={onDragEnd}
               >
                 <CustomAccordion
                   level="level3"
-                  setNestedState={setNestedState}
                   onDragEnd={onDragEnd}
                 />
               </DraggableList>

@@ -6,7 +6,6 @@ const DraggableList = ({
   children,
   onDragEnd,
   nestedState,
-  setNestedState,
   level,
   contents,
   id,
