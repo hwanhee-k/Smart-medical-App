@@ -38,6 +38,7 @@ const NestedDndMain = () => {
     ]);
   };
 
+
   const createReorderedData = (arr, start_idx, end_idx) => {
     const newData = [...arr];
     const [reorderedData] = newData.splice(start_idx, 1);

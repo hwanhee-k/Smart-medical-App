@@ -6,7 +6,6 @@ import NestedDndMain from "../component/NestedDndMain";
 const MainPage = () => {
   return (
     <Layout>
-      <DraggableList />
       <NestedDndMain />
     </Layout>
   );
